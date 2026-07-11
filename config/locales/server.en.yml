@@ -1,0 +1,5 @@
+en:
+  site_settings:
+    cgsf_name_format_enabled: "Require display names to follow the Connect St. Francis convention: first name and last initial, like \"Maria G.\""
+  cgsf_name_format:
+    invalid: 'should be your first name and last initial, like "Maria G."'

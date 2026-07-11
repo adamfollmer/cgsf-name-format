@@ -1,0 +1,4 @@
+plugins:
+  cgsf_name_format_enabled:
+    default: true
+    client: false
