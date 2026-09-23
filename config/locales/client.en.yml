@@ -1,0 +1,7 @@
+en:
+  js:
+    cgsf_name_format:
+      username_public: "Everyone on the site can see your username. Choose any username you like."
+      preview_label: "Neighbors will see you as:"
+      preview_placeholder: "Maria G."
+      shortened: "We shorten your last name to its first letter."

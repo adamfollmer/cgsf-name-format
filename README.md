@@ -6,9 +6,11 @@ Neighbors should know they're talking to a real person — never a full last nam
 
 ## What it does
 
+- **Shapes** what people type into the convention before saving: `maria garcia` → `Maria G.`, `Mary Jo Kowalski` → `Mary Jo K.`. The full last name is never stored.
 - Validates the **Name** field on signup and profile changes against the "First L." pattern.
 - Accepts: `Maria G.`, `Adam F`, `Mary Jo K.`, `D'Angelo R.`, `Anne-Marie B.`
-- Rejects: full last names, lone first names, lowercase.
+- Rejects what it can't shape: lone first names, more than two given names.
+- On the invite page: tells members their username is public and shows a live preview, "Neighbors will see you as: **Maria G.** @mariag". Usernames are the member's free choice. Preview text is editable in Admin → Customize → Text (`cgsf_name_format`).
 - Existing users are grandfathered — only *changed* names are validated.
 - System/bot accounts are exempt.
 
