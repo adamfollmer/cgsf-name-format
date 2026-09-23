@@ -1,6 +1,9 @@
 en:
   js:
     cgsf_name_format:
+      first_name: "First name"
+      last_name: "Last name"
+      name_note: "Neighbors will see your first name and last initial, like Maria G. Your full last name stays private. Next, you'll choose a username."
       username_public: "Everyone on the site can see your username. Choose any username you like."
       preview_label: "Neighbors will see you as:"
       preview_placeholder: "Maria G."

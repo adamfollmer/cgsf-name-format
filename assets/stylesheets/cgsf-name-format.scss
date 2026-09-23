@@ -1,7 +1,51 @@
-// Invite page: "username is public" note and the live name preview.
+// Signup/invite: First + Last name boxes, "username is public" note, live name preview.
+
+// Core's single name input stays in the DOM (it's what gets submitted), hidden.
+.cgsf-split-name > label[for="code-login-name"],
+.cgsf-split-name > #code-login-name {
+  display: none;
+}
+
+.cgsf-name-fields {
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75em 1em;
+  }
+
+  &__col {
+    display: flex;
+    flex: 1 1 12em;
+    flex-direction: column;
+    gap: 0.25em;
+
+    label {
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  &__note {
+    margin: 0.75em 0 0;
+    color: var(--primary-medium);
+  }
+}
+
 .cgsf-username-note {
   margin-top: 0.35em;
   color: var(--primary-medium);
+}
+
+// The username field is a subgrid; our additions span the full row.
+.code-login-form__username-field {
+  > .cgsf-username-note,
+  > .cgsf-name-preview {
+    grid-column: 1 / -1;
+  }
 }
 
 .cgsf-name-preview {
@@ -38,5 +82,10 @@
     margin-top: 0.35em;
     font-size: var(--font-down-1);
     color: var(--tertiary);
+  }
+
+  // Before both boxes are filled, the example name shows faded.
+  &.--empty &__name {
+    color: var(--primary-low-mid);
   }
 }

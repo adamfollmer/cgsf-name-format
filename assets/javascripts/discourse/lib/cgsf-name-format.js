@@ -27,6 +27,18 @@ export function shortName(raw) {
   return `${given.join(" ")} ${initial.toUpperCase()}.`;
 }
 
+// From separate First name / Last name boxes: "mary jo" + "kowalski" -> "Mary Jo K.".
+// Returns "" until both boxes hold a letter.
+export function fromParts(first, last) {
+  const given = (first || "").trim().split(/\s+/).filter(Boolean);
+  const initial = (last || "").match(/\p{L}/u)?.[0];
+  if (!given.length || !initial) {
+    return "";
+  }
+  const shaped = given.map((w) => w.split("-").map(capitalize).join("-"));
+  return `${shaped.join(" ")} ${initial.toUpperCase()}.`;
+}
+
 // True when the last word is longer than an initial, i.e. we will shorten it.
 export function willShorten(raw) {
   const words = (raw || "").trim().split(/\s+/).filter(Boolean);

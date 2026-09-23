@@ -10,7 +10,8 @@ Neighbors should know they're talking to a real person — never a full last nam
 - Validates the **Name** field on signup and profile changes against the "First L." pattern.
 - Accepts: `Maria G.`, `Adam F`, `Mary Jo K.`, `D'Angelo R.`, `Anne-Marie B.`
 - Rejects what it can't shape: lone first names, more than two given names.
-- On the invite page: tells members their username is public and shows a live preview, "Neighbors will see you as: **Maria G.** @mariag". Usernames are the member's free choice. Preview text is editable in Admin → Customize → Text (`cgsf_name_format`).
+- On the code-login signup/invite form (which has no plugin outlet at these fields), `api-initializers/cgsf-signup-name-fields.js` splits the name into **First name + Last name** boxes and writes only the shaped "Maria G." into core's hidden name input, so the full last name never leaves the browser. The username step gets a "usernames are public" note and a live preview. Keyed on core ids `code-login-name` / `code-login-username`; if core renames them, the stock form shows.
+- On the legacy invite form: tells members their username is public and shows a live preview, "Neighbors will see you as: **Maria G.** @mariag". Usernames are the member's free choice. Preview text is editable in Admin → Customize → Text (`cgsf_name_format`).
 - Existing users are grandfathered — only *changed* names are validated.
 - System/bot accounts are exempt.
 
