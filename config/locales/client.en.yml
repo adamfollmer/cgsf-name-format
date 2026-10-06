@@ -3,8 +3,8 @@ en:
     cgsf_name_format:
       first_name: "First name"
       last_name: "Last name"
-      name_note: "Neighbors will see your first name and last initial, like Maria G. Your full last name stays private. Next, you'll choose a username."
+      name_note: "When you post, people will see your first name and last initial, like Maria G. Next, you'll choose a username that is unique to you."
       username_public: "Everyone on the site can see your username. Choose any username you like."
-      preview_label: "Neighbors will see you as:"
+      preview_label: "Preview:"
       preview_placeholder: "Maria G."
       shortened: "We shorten your last name to its first letter."
