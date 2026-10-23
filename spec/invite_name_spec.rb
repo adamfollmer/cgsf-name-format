@@ -2,9 +2,10 @@
 
 require "rails_helper"
 
-RSpec.describe "cgsf-name-format invite names and name lock" do
-  fab!(:admin)
-  fab!(:moderator)
+RSpec.describe "cgsf-name-format invite names and name lock", type: :request do
+  # Core fabricators use names like "Bruce Wayne 12", which the format rejects.
+  fab!(:admin) { Fabricate(:admin, name: "Adam F.") }
+  fab!(:moderator) { Fabricate(:moderator, name: "Mo D.") }
   fab!(:member) { Fabricate(:user, name: "Maria G.") }
   fab!(:invite) { Fabricate(:invite, invited_by: admin, email: "newbie@example.com") }
 

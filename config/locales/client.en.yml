@@ -12,4 +12,5 @@ en:
       shortened: "We shorten your last name to its first letter."
       invite_name_title: "Their name"
       invite_name_help: "They will post as their first name and last initial. Leave both boxes empty to let them type it when they join."
-      invite_name_preview: "They will post as %{name}. Only staff can change it later."
+      # The name ends with its own period ("Jane D."), so it closes the sentence.
+      invite_name_preview: "Only staff can change their name later. They will post as %{name}"
