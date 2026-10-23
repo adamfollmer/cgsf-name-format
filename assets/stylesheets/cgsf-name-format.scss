@@ -89,3 +89,13 @@
     color: var(--primary-low-mid);
   }
 }
+
+// Staff invite form: the name boxes under the email field.
+.cgsf-invite-name {
+  margin: 0 0 1em;
+
+  &__title {
+    margin-bottom: 0.5em;
+    font-weight: 700;
+  }
+}

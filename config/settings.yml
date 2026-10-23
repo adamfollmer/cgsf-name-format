@@ -2,3 +2,6 @@ plugins:
   cgsf_name_format_enabled:
     default: true
     client: false
+  cgsf_name_format_lock_names:
+    default: true
+    client: true

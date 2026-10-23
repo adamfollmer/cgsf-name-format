@@ -14,12 +14,15 @@ Neighbors should know they're talking to a real person — never a full last nam
 - On the legacy invite form: tells members their username is public and shows a live preview, "Neighbors will see you as: **Maria G.** @mariag". Usernames are the member's free choice. Preview text is editable in Admin → Customize → Text (`cgsf_name_format`).
 - Existing users are grandfathered — only *changed* names are validated.
 - System/bot accounts are exempt.
+- **Staff set the name at invite.** The staff invite form ("with roles" modal) gets First name + Last name boxes under the email field. After the invite saves, the shaped "Maria G." is stored on the invite (PluginStore) and becomes the member's name when they join, whatever they type. The signup skips the name step and previews the set name. Email invites only: an invite link can be used by several people. Leave the boxes empty and invitees type their own name as before.
+- **Names are locked after joining.** Only staff can change a member's name (Admin → Users, or the member's preferences). Members see it as plain text with a note to message a moderator.
 
 ## Settings
 
 | Setting | Default | Purpose |
 |---|---|---|
 | `cgsf_name_format_enabled` | `true` | Master switch for the validation |
+| `cgsf_name_format_lock_names` | `true` | Only staff can change a member's name after they join |
 
 ## Install
 

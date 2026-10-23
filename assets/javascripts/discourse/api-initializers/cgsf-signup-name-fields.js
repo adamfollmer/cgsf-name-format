@@ -1,3 +1,4 @@
+import { ajax } from "discourse/lib/ajax";
 import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
 import { fromParts } from "../lib/cgsf-name-format";
@@ -12,11 +13,16 @@ import { fromParts } from "../lib/cgsf-name-format";
 //
 // Everything keys off core element ids; if core renames them, nothing happens
 // and the stock form shows unchanged.
+//
+// When staff set the name on the invite, the server skips the name step and
+// uses that name. We fetch it so the username step can preview it, and so the
+// name step (if it still shows, e.g. for required user fields) shows it fixed.
 
 const NAME_INPUT_ID = "code-login-name";
 const USERNAME_INPUT_ID = "code-login-username";
 
 let shapedName = "";
+let presetName = "";
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -60,6 +66,21 @@ function enhanceNameStep() {
 
   const field = coreInput.parentElement;
   field.classList.add("cgsf-split-name");
+
+  if (presetName) {
+    coreInput.value = presetName;
+    coreInput.dispatchEvent(new Event("input", { bubbles: true }));
+    const preview = previewBox();
+    preview.name.textContent = presetName;
+    const fixed = el("div", "cgsf-name-fields");
+    fixed.append(
+      preview.box,
+      el("p", "cgsf-name-fields__note", i18n("cgsf_name_format.name_set_by_invite"))
+    );
+    field.prepend(fixed);
+    shapedName = presetName;
+    return;
+  }
 
   const first = labeledInput("cgsf-first-name", i18n("cgsf_name_format.first_name"), "given-name");
   const last = labeledInput("cgsf-last-name", i18n("cgsf_name_format.last_name"), "family-name");
@@ -141,4 +162,17 @@ export default apiInitializer((api) => {
     subtree: true,
   });
   enhance();
+
+  // The invite page is /invites/<key>; ask whether staff set this person's name.
+  const inviteKey = window.location.pathname.match(/\/invites\/([^/?#]+)/)?.[1];
+  if (inviteKey) {
+    ajax(`/cgsf-name-format/invite-name/${encodeURIComponent(inviteKey)}`)
+      .then((result) => {
+        if (result?.name) {
+          presetName = result.name;
+          shapedName = presetName;
+        }
+      })
+      .catch(() => {});
+  }
 });
